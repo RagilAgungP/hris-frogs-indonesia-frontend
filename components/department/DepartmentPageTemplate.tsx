@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import type { DepartmentRow } from "@/lib/types";
 import {
   Chart as ChartJS,

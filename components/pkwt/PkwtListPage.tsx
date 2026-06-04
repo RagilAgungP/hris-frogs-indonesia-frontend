@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import Link from "next/link";
 import { usePkwtStore } from "@/store/usePkwtStore";
 import { SuccessAlert } from "@/components/ui/SuccessAlert";
 import { ActionDropdown, DropdownItem } from "@/components/ui/ActionDropdown";
@@ -13,7 +12,6 @@ export function PkwtListPage({ branch }: { branch: Branch }) {
   const pkwts = usePkwtStore((s) => s.pkwts);
   const successMessage = usePkwtStore((s) => s.successMessage);
   const setSuccessMessage = usePkwtStore((s) => s.setSuccessMessage);
-  const deletePkwt = usePkwtStore((s) => s.deletePkwt);
 
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
