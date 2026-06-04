@@ -1,27 +1,29 @@
-"use client";
-
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 
-interface AuthState {
-  isAuthenticated: boolean;
-  user: { name: string; role: string } | null;
-  login: (email: string) => void;
+type User = {
+  name?: string;
+  email: string;
+};
+
+type AuthState = {
+  user: User | null;
+  login: (payload: { email: string; password: string; name?: string }) => void;
   logout: () => void;
-}
+};
 
-export const useAuthStore = create<AuthState>()(
-  persist(
-    (set) => ({
-      isAuthenticated: false,
-      user: null,
-      login: () =>
-        set({
-          isAuthenticated: true,
-          user: { name: "John Doe", role: "Administrator" },
-        }),
-      logout: () => set({ isAuthenticated: false, user: null }),
-    }),
-    { name: "frogs-auth" }
-  )
-);
+export const useAuthStore = create<AuthState>((set) => ({
+  user: null,
+
+  login: (payload) => {
+    set({
+      user: {
+        email: payload.email,
+        name: payload.name,
+      },
+    });
+  },
+
+  logout: () => {
+    set({ user: null });
+  },
+}));
