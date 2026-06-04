@@ -7,12 +7,15 @@ type User = {
 
 type AuthState = {
   user: User | null;
+  isAuthenticated: boolean;
+
   login: (payload: { email: string; password: string; name?: string }) => void;
   logout: () => void;
 };
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
+  isAuthenticated: false,
 
   login: (payload) => {
     set({
@@ -20,10 +23,14 @@ export const useAuthStore = create<AuthState>((set) => ({
         email: payload.email,
         name: payload.name,
       },
+      isAuthenticated: true,
     });
   },
 
   logout: () => {
-    set({ user: null });
+    set({
+      user: null,
+      isAuthenticated: false,
+    });
   },
 }));
