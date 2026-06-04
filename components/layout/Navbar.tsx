@@ -51,7 +51,9 @@ export function Navbar() {
             <div className="absolute right-0 mt-3 w-52 bg-white shadow-lg rounded-md border py-2 z-50">
               <div className="px-4 py-2 border-b">
                 <p className="font-semibold text-gray-700 text-sm">{user?.name ?? "John Doe"}</p>
-                <p className="text-xs text-gray-500">{user?.role?.toUpperCase() ?? "ADMINISTRATOR"}</p>
+                <p className="text-xs text-gray-500">
+  {(user?.role ?? "ADMINISTRATOR").toUpperCase()}
+</p>
               </div>
               <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
               <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
